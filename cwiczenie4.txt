@@ -1,0 +1,12 @@
+1.echo "tekst" > nazwa_pliku.txt  z operatorem przekierowania 
+	echo "tekst" >> nazwa_pliku.txt z operatorem dopisania
+2.alt i 3
+3.alt i } zwiekszanie
+ alt i { zmniejszanie
+4.~/.nanorc plik konfiguracyjnt
+set tabstospaces
+5.~/.vimrc plik konfiguracyjny do nano
+set expandtab
+set tabstop=4
+set shiftwidth=4
+(4 bo jeden tabulator na 4 spacje zamieniamy)
