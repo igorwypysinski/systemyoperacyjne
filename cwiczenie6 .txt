@@ -13,14 +13,14 @@
 
 
 5.LC_NUMERIC=C awk -F, 'NR > 1 { print $1 + $2 + $3 + $4 }' iris.csv (LC_NUMERIC=C ustawia standardowe ustawienia regionalne dla liczb wyłącznie na czas działania tego polecenia żeby awk zadziałało z kropka jako separator)
-
+LC_NUMERIC=C awk -F uruchamia awk z kropką dziesiętną i separatorem pol ustawionym na przecinek
 
 
 6.LC_NUMERIC=C awk -F, 'NR > 1 { sum += $2; count += 1 } END { print sum / count }' iris.csv "(NR > 1 { sum += $2; count += 1 }  dla każdego wiersza z danymi z pominięciem nagłówka NR == 1)"
-
+LC_NUMERIC=C awk  dziala analogicznie
 
 7.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$4 > max { max = $4; line = $0 } END { print line }' ({ max = $4; line = $0 } – akcja wykonywana tylko wtedy, gdy $4 przekracza dotychczasowe max: zapisuje nową najwyższą wartość w zmiennej max, a całą treść bieżącego wiersza (reprezentowaną przez zmienną $0) kopiuje do zmiennej line)
-
+LC_NUMERIC=C awk  dziala analogicznie
 
 
 8.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$1 > 7 { print $5 }' (LC_NUMERIC=C awk -F, – ustawia kropkę dziesiętną i przecinek jako separator pol i $1 > 7 to wzorzec sprawdzający czy wartość 1 kolumnie jest większą od 7 )
