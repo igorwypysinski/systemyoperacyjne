@@ -1,0 +1,35 @@
+1.head -n 1 iris.csv (domyślnie przy -n jest 10 wiec ograniczamy liczba do jednego bo nie potrzebujemy 10)
+
+
+2.tail -n +2 iris.csv (znak + zmienia działanie i zamiast dać 2 ostatnie zacznie wypisywanie od 2 linii )
+
+
+
+3.sed 's/"Setosa"/1/g' iris.csv | sed 's/"Versicolor"/2/g' | sed 's/"Virginica"/3/g' (sed czyta linia po linii i [s] substitute zastepuje ciga cyfra) [g-global
+
+
+4.tail -n +2 iris.csv | cut -d ',' -f 5 | tr -d '"' | sort | uniq (uniq działa tylko jak duplikaty są bezpośrednio kolo siebie)
+
+
+
+5.LC_NUMERIC=C awk -F, 'NR > 1 { print $1 + $2 + $3 + $4 }' iris.csv (LC_NUMERIC=C ustawia standardowe ustawienia regionalne dla liczb wyłącznie na czas działania tego polecenia żeby awk zadziałało z kropka jako separator)
+
+
+
+6.LC_NUMERIC=C awk -F, 'NR > 1 { sum += $2; count += 1 } END { print sum / count }' iris.csv "(NR > 1 { sum += $2; count += 1 }  dla każdego wiersza z danymi z pominięciem nagłówka NR == 1)"
+
+
+7.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$4 > max { max = $4; line = $0 } END { print line }' ({ max = $4; line = $0 } – akcja wykonywana tylko wtedy, gdy $4 przekracza dotychczasowe max: zapisuje nową najwyższą wartość w zmiennej max, a całą treść bieżącego wiersza (reprezentowaną przez zmienną $0) kopiuje do zmiennej line)
+
+
+
+8.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$1 > 7 { print $5 }' (LC_NUMERIC=C awk -F, – ustawia kropkę dziesiętną i przecinek jako separator pol i $1 > 7 to wzorzec sprawdzający czy wartość 1 kolumnie jest większą od 7 )
+
+
+9.LC_NUMERIC=C awk -F, 'NR > 1 { printf "%d\t%d\t%d\t%d\t%s\n", $1, $2, $3, $4, $5 }' iris.csv (%d formatuje pola jako liczby całkowite, \t daje Taba pomiędzy sąsiadami , \n next linę,%s – wstawia wartość z pola $5 jako ciąg tekstowy string.
+
+
+
+10.
+head -n 1 iris.csv > iris_shuffled.csv
+tail -n +2 iris.csv | shuf >> iris_shuffled.csv (shuf losowe tasuje kolejność a klasyczne operatory nadpisują lub dopisują lub tworzą nowy plik jak nie ma co nadpisać)
