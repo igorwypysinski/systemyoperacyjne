@@ -1,20 +1,15 @@
-1.head -n 1 iris.csv (domyślnie przy -n jest 10 wiec ograniczamy liczba do jednego bo nie potrzebujemy 10)
+1.head -n 1 iris.csv 
+
+2.tail -n +2 iris.csv 
+
+3.sed 's/"Setosa"/1/g' iris.csv | sed 's/"Versicolor"/2/g' | sed 's/"Virginica"/3/g' 
 
 
-2.tail -n +2 iris.csv (znak + zmienia działanie i zamiast dać 2 ostatnie zacznie wypisywanie od 2 linii )
-
-
-
-3.sed 's/"Setosa"/1/g' iris.csv | sed 's/"Versicolor"/2/g' | sed 's/"Virginica"/3/g' (sed czyta linia po linii i [s] substitute zastepuje ciga cyfra) [g-global
-
-
-4.tail -n +2 iris.csv | cut -d ',' -f 5 | tr -d '"' | sort | uniq (uniq działa tylko jak duplikaty są bezpośrednio kolo siebie)
+4.tail -n +2 iris.csv | cut -d ',' -f 5 | tr -d '"' | sort | uniq 
 
 
 
-5.LC_NUMERIC=C awk -F, 'NR > 1 { print $1 + $2 + $3 + $4 }' iris.csv (LC_NUMERIC=C ustawia standardowe ustawienia regionalne dla liczb wyłącznie na czas działania tego polecenia żeby awk zadziałało z kropka jako separator)
-LC_NUMERIC=C awk -F uruchamia awk z kropką dziesiętną i separatorem pol ustawionym na przecinek
-
+5.LC_NUMERIC=C awk -F, 'NR > 1 { print $1 + $2 + $3 + $4 }' iris.csv 
 
 6.LC_NUMERIC=C awk -F, 'NR > 1 { sum += $2; count += 1 } END { print sum / count }' iris.csv "(NR > 1 { sum += $2; count += 1 }  dla każdego wiersza z danymi z pominięciem nagłówka NR == 1)"
 LC_NUMERIC=C awk  dziala analogicznie
@@ -23,12 +18,10 @@ LC_NUMERIC=C awk  dziala analogicznie
 LC_NUMERIC=C awk  dziala analogicznie
 
 
-8.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$1 > 7 { print $5 }' (LC_NUMERIC=C awk -F, – ustawia kropkę dziesiętną i przecinek jako separator pol i $1 > 7 to wzorzec sprawdzający czy wartość 1 kolumnie jest większą od 7 )
+8.tail -n +2 iris.csv | LC_NUMERIC=C awk -F, '$1 > 7 { print $5 }' (
 
 
-9.LC_NUMERIC=C awk -F, 'NR > 1 { printf "%d\t%d\t%d\t%d\t%s\n", $1, $2, $3, $4, $5 }' iris.csv (%d formatuje pola jako liczby całkowite, \t daje Taba pomiędzy sąsiadami , \n next linę,%s – wstawia wartość z pola $5 jako ciąg tekstowy string.
-
-
+9.LC_NUMERIC=C awk -F, 'NR > 1 { printf "%d\t%d\t%d\t%d\t%s\n", $1, $2, $3, $4, $5 }' iris.csv 
 
 10.
 head -n 1 iris.csv > iris_shuffled.csv
